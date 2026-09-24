@@ -3,7 +3,7 @@ from time import sleep
 from gpiozero.pins.pigpio import PiGPIOFactory
 
 class Drawer_Servo:
-    def init(self, pwm_pin):
+    def __init__(self, pwm_pin):
         # requires pigpiod to run properly
         factory = PiGPIOFactory()
         self.servo = Servo(pwm_pin, pin_factory=factory)
@@ -19,3 +19,13 @@ class Drawer_Servo:
     def move_servo(val):
         self.servo.value = val
         sleep(1)
+
+if __name__ == "__main__":
+    left = Drawer_Servo(13)
+    right = Drawer_Servo(12)
+
+    left.close_drawer()
+    right.close_drawer()
+
+    left.open_drawer()
+    right.open_drawer()
