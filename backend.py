@@ -8,15 +8,15 @@ class Drawer_Servo:
         factory = PiGPIOFactory()
         self.servo = Servo(pwm_pin, pin_factory=factory)
 
-    def open_drawer():
+    def open_drawer(self):
         self.servo.max()
         sleep(1)
 
-    def close_drawer():
+    def close_drawer(self):
         self.servo.min()
         sleep(1)
 
-    def move_servo(val):
+    def move_servo(self, val):
         self.servo.value = val
         sleep(1)
 
