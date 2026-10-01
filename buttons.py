@@ -18,6 +18,6 @@ else:
 right = backend.Drawer_Servo(12)
 
 ttk.Label(frm, text="Drawer Control").grid(column=50, row=0)
-ttk.Button(frm, text="Right Drawer", command=right.toggle_drawer).grid(column=45, row=20, padx=5, pady=20) #command=right.toggle_drawer)
+ttk.Button(frm, text="Right Drawer", command=right.toggle_drawer()).grid(column=45, row=20, padx=5, pady=20) #command=right.toggle_drawer)
 ttk.Button(frm, text="Quit", command=root.destroy).grid(column=50, row=30, padx=20, pady=20)
 root.mainloop()

@@ -10,7 +10,7 @@ class Drawer_Servo:
         factory = PiGPIOFactory()
         self.servo = Servo(pwm_pin, pin_factory=factory)
         self.closed = False
-        self.close_drawer
+        self.close_drawer()
 
     def open_drawer(self):
         if self.closed:
@@ -26,9 +26,9 @@ class Drawer_Servo:
 
     def toggle_drawer(self):
         if self.closed:
-            self.close_drawer
+            self.close_drawer()
         if not self.closed:
-            self.open_drawer
+            self.open_drawer()
 
     def move_servo(self, val):
         self.servo.value = val
