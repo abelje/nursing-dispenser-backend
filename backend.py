@@ -11,12 +11,22 @@ class Drawer_Servo:
         self.servo = Servo(pwm_pin, pin_factory=factory)
 
     def open_drawer(self):
-        self.servo.max()
-        sleep(1)
+        if self.closed:
+            self.servo.max()
+            sleep(1)
+            self.closed = False
 
     def close_drawer(self):
-        self.servo.min()
-        sleep(1)
+        if not self.closed:
+            self.servo.min()
+            sleep(1)
+            self.closed = True
+
+    def toggle_drawer(self):
+        if self.closed:
+            self.close_drawer
+        if not self.closed:
+            self.open_drawer
 
     def move_servo(self, val):
         self.servo.value = val

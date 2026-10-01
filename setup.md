@@ -33,20 +33,16 @@ This website has the pinout for a raspberry pi zero here: (https://pinout.xyz/)[
 
 [run terminal commands in python](https://stackoverflow.com/questions/3730964/python-script-execute-commands-in-terminal)
 1. Add ```#!/usr/bin/env python3``` to the top of the script being used.
-2. Create an executable using ```chmod +x /path/script.py````
+2. Create an executable using ```chmod +x /path/script.py```
 3. Create text file on desktop, naming it with the ```.desktop``` filetype.
 4. Open the file in a text editor and edit the config in this style:
 
     ```
     [Desktop Entry]
-    Encoding=UTF-8
-    Version=1.0                                     # version of an app.
-    Name[en_US]=yEd                                 # name of an app.
-    GenericName=GUI Port Scanner                    # longer name of an app.
-    Exec=java -jar /opt/yed-3.11.1/yed.jar          # command used to launch an app.
-    Terminal=false                                  # whether an app requires to be run in a terminal.
-    Icon[en_US]=/opt/yed-3.11.1/icons/yicon32.png   # location of icon file.
-    Type=Application                                # type.
-    Categories=Application;Network;Security;        # categories in which this app should be listed.
-    Comment[en_US]=yEd Graph Editor                 # comment which appears as a tooltip.
+    Name[en_GB]=program.desktop
+    Exec=python3 /path/p.py
+    Icon[en_US]=/path/icon.png
+    Type=Application
+    Categories=Programming
+    Terminal=false
     ```
