@@ -9,6 +9,7 @@ class Drawer_Servo:
         # requires pigpiod to run properly
         factory = PiGPIOFactory()
         self.servo = Servo(pwm_pin, pin_factory=factory)
+        self.close_drawer
 
     def open_drawer(self):
         if self.closed:
