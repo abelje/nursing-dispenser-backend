@@ -2,6 +2,7 @@
 from gpiozero import Servo
 from time import sleep
 from gpiozero.pins.pigpio import PiGPIOFactory
+import subprocess
 
 class Drawer_Servo:
     def __init__(self, pwm_pin):
@@ -22,6 +23,12 @@ class Drawer_Servo:
         sleep(1)
 
 if __name__ == "__main__":
+    s = subprocess.getstatusoutput('sudo pigpiod')
+    if s[0] == 0:
+        print(s[1])
+    else:
+        print('Error {}'.format(s[1]))
+
     left = Drawer_Servo(13)
     right = Drawer_Servo(12)
 

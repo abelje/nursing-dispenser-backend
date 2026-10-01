@@ -28,7 +28,10 @@ This website has the pinout for a raspberry pi zero here: (https://pinout.xyz/)[
 
 ## Create Desktop Shortcut for Python Script
 [https://stackoverflow.com/questions/28158353/click-desktop-icon-to-execute-python-script-in-raspbian](https://stackoverflow.com/questions/28158353/click-desktop-icon-to-execute-python-script-in-raspbian)
+
 [https://forums.raspberrypi.com/viewtopic.php?t=73529](https://forums.raspberrypi.com/viewtopic.php?t=73529)
+
+[run terminal commands in python](https://stackoverflow.com/questions/3730964/python-script-execute-commands-in-terminal)
 1. Add ```#!/usr/bin/env python3``` to the top of the script being used.
 2. Create an executable using ```chmod +x /path/script.py````
 3. Create text file on desktop, naming it with the ```.desktop``` filetype.
