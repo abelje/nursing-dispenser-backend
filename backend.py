@@ -26,9 +26,9 @@ class Drawer_Servo:
 
     def toggle_drawer(self):
         if self.closed:
-            self.close_drawer()
-        if not self.closed:
             self.open_drawer()
+        elif not self.closed:
+            self.close_drawer()
 
     def move_servo(self, val):
         self.servo.value = val
