@@ -1,6 +1,6 @@
 # Raspberry Pi Zero Setup
 ## Soldering on the Pins
-Solder on the Pins to the Raspberry Pi Uno board, take note of the orientation
+Solder on the Pins to the Raspberry Pi Zero board, take note of the orientation
 
 ## Installing the OS
 [https://www.raspberrypi.com/software/](https://www.raspberrypi.com/software/)
@@ -25,3 +25,25 @@ This website has the pinout for a raspberry pi zero here: (https://pinout.xyz/)[
     sudo ldconfig
     ```
 3. Run pigpio using ```sudo pigpiod```
+
+## Create Desktop Shortcut for Python Script
+[https://stackoverflow.com/questions/28158353/click-desktop-icon-to-execute-python-script-in-raspbian](https://stackoverflow.com/questions/28158353/click-desktop-icon-to-execute-python-script-in-raspbian)
+[https://forums.raspberrypi.com/viewtopic.php?t=73529](https://forums.raspberrypi.com/viewtopic.php?t=73529)
+1. Add ```#!/usr/bin/env python3``` to the top of the script being used.
+2. Create an executable using ```chmod +x /path/script.py````
+3. Create text file on desktop, naming it with the ```.desktop``` filetype.
+4. Open the file in a text editor and edit the config in this style:
+
+    ```
+    [Desktop Entry]
+    Encoding=UTF-8
+    Version=1.0                                     # version of an app.
+    Name[en_US]=yEd                                 # name of an app.
+    GenericName=GUI Port Scanner                    # longer name of an app.
+    Exec=java -jar /opt/yed-3.11.1/yed.jar          # command used to launch an app.
+    Terminal=false                                  # whether an app requires to be run in a terminal.
+    Icon[en_US]=/opt/yed-3.11.1/icons/yicon32.png   # location of icon file.
+    Type=Application                                # type.
+    Categories=Application;Network;Security;        # categories in which this app should be listed.
+    Comment[en_US]=yEd Graph Editor                 # comment which appears as a tooltip.
+    ```

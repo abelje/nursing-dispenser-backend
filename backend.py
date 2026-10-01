@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from gpiozero import Servo
 from time import sleep
 from gpiozero.pins.pigpio import PiGPIOFactory
