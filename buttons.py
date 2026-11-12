@@ -1,17 +1,20 @@
 #!/usr/bin/env python3
 import subprocess
-commands = [
-        ["source env/bin/activate"], # enter the right environment first
-        ["sudo pigpiod"]
-    ]
-
-for cmd in commands:
-    result = subprocess.run(cmd, check=True, text=True, capture_output=True)
-    print(result.stdout)
+s = subprocess.getstatusoutput('source env/bin/activate')
+if s[0] == 0:
+    print(s[1])
+else:
+    print('Error {}'.format(s[1]))
 
 from backend import Drawer_Servo
 from tkinter import *
 from tkinter import ttk
+
+s = subprocess.getstatusoutput('sudo pigpiod')
+if s[0] == 0:
+    print(s[1])
+else:
+    print('Error {}'.format(s[1]))
 
 root = Tk()
 frm = ttk.Frame(root, padding=10)
