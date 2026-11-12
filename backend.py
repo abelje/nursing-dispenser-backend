@@ -1,45 +1,48 @@
 #!/usr/bin/env python3
-from gpiozero import Servo
 from time import sleep
-from gpiozero.pins.pigpio import PiGPIOFactory
 import subprocess
+from adafruit_servokit import ServoKit
 
 class Drawer_Servo:
-    def __init__(self, pwm_pin):
+    def __init__(self):
         # requires pigpiod to run properly
-        factory = PiGPIOFactory()
-        self.servo = Servo(pwm_pin, pin_factory=factory)
+        kit = ServoKit(channels=16)
+        self.servos = kit.servo
         self.closed = False
-        self.close_drawer()
+        for i in range(0, 15):
+            self.close_drawer(i)
 
-    def open_drawer(self):
+    def open_drawer(self, pin):
         if self.closed:
-            self.servo.max()
+            self.servos[pin] = 180
             sleep(1)
             self.closed = False
 
-    def close_drawer(self):
+    def close_drawer(self, pin):
         if not self.closed:
-            self.servo.min()
+            self.servos[pin] = 0
             sleep(1)
             self.closed = True
 
-    def toggle_drawer(self):
+    def toggle_drawer(self, pin):
         if self.closed:
-            self.open_drawer()
+            self.open_drawer(pin)
         elif not self.closed:
-            self.close_drawer()
+            self.close_drawer(pin)
 
-    def move_servo(self, val):
-        self.servo.value = val
+    def move_servo(self, pin, val):
+        self.servos[pin] = val
         sleep(1)
 
 if __name__ == "__main__":
-    s = subprocess.getstatusoutput('sudo pigpiod')
-    if s[0] == 0:
-        print(s[1])
-    else:
-        print('Error {}'.format(s[1]))
+    commands = [
+        ["source", "env/bin/activate"], # enter the right environment first
+        ["sudo", "pigpiod"]
+    ]
+
+    for cmd in commands:
+        result = subprocess.run(cmd, check=True, text=True, capture_output=True)
+        print(result.stdout)
 
     left = Drawer_Servo(13)
     right = Drawer_Servo(12)

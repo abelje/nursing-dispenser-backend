@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import backend
+from backend import Drawer_Servo
 import subprocess
 from tkinter import *
 from tkinter import ttk
@@ -8,16 +8,18 @@ root = Tk()
 frm = ttk.Frame(root, padding=10)
 frm.grid()
 
-s = subprocess.getstatusoutput('sudo pigpiod')
-if s[0] == 0:
-    print(s[1])
-else:
-    print('Error {}'.format(s[1]))
+commands = [
+        ["source", "env/bin/activate"], # enter the right environment first
+        ["sudo", "pigpiod"]
+    ]
 
-# left = backend.Drawer_Servo(13)
-right = backend.Drawer_Servo(12)
+for cmd in commands:
+    result = subprocess.run(cmd, check=True, text=True, capture_output=True)
+    print(result.stdout)
+
+servo_hat = Drawer_Servo()
 
 ttk.Label(frm, text="Drawer Control").grid(column=50, row=0)
-ttk.Button(frm, text="Right Drawer", command=right.toggle_drawer).grid(column=45, row=20, padx=5, pady=20) #command=right.toggle_drawer)
+ttk.Button(frm, text="Right Drawer", command=servo_hat.toggle_drawer(0)).grid(column=45, row=20, padx=5, pady=20) #command=right.toggle_drawer)
 ttk.Button(frm, text="Quit", command=root.destroy).grid(column=50, row=30, padx=20, pady=20)
 root.mainloop()

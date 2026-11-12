@@ -46,3 +46,24 @@ This website has the pinout for a raspberry pi zero here: (https://pinout.xyz/)[
     Categories=Programming
     Terminal=false
     ```
+
+## Adafruit Hat
+https://learn.adafruit.com/adafruit-16-channel-pwm-servo-hat-for-raspberry-pi/using-the-python-library
+
+The hat we got for this research requires a circuit python library to work. Blinka needs to be installed to serve as a interface layer for the Raspberry Pi.
+
+### Installing Blinka
+https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi
+
+1. Follow the tutorial
+    - source env/bin/activate is required to start the virtual environment
+    - TODO: set up the virtual environment to autorun if necessary
+    - There is a nice install script that it will tell you to run
+
+2. It will prompt a Reboot
+
+### Installing the necessary library
+1. Activate the virtual environment: source env/bin/activate
+2. https://learn.adafruit.com/adafruit-16-channel-pwm-servo-hat-for-raspberry-pi/using-the-python-library
+3. pip3 install adafruit-circuitpython-servokit
+4. The virtual environment is required to be activated before running a python script with the Servo Hat.
