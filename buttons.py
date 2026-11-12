@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
 import subprocess
-s = subprocess.getstatusoutput('source env/bin/activate')
-if s[0] == 0:
-    print(s[1])
-else:
-    print('Error {}'.format(s[1]))
-
 from backend import Drawer_Servo
 from tkinter import *
 from tkinter import ttk
