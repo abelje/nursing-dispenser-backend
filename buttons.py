@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
-from backend import Drawer_Servo
 import subprocess
+commands = [
+        ["source env/bin/activate"], # enter the right environment first
+        ["sudo pigpiod"]
+    ]
+
+for cmd in commands:
+    result = subprocess.run(cmd, check=True, text=True, capture_output=True)
+    print(result.stdout)
+
+from backend import Drawer_Servo
 from tkinter import *
 from tkinter import ttk
 
 root = Tk()
 frm = ttk.Frame(root, padding=10)
 frm.grid()
-
-commands = [
-        ["source", "env/bin/activate"], # enter the right environment first
-        ["sudo", "pigpiod"]
-    ]
-
-for cmd in commands:
-    result = subprocess.run(cmd, check=True, text=True, capture_output=True)
-    print(result.stdout)
 
 servo_hat = Drawer_Servo()
 
