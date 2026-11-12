@@ -6,21 +6,20 @@ from adafruit_servokit import ServoKit
 class Drawer_Servo:
     def __init__(self):
         # requires pigpiod to run properly
-        kit = ServoKit(channels=16)
-        self.servos = kit.servo
+        self.kit = ServoKit(channels=16)
         self.closed = False
         for i in range(0, 15):
             self.close_drawer(i)
 
     def open_drawer(self, pin):
         if self.closed:
-            self.servos[pin] = 180
+            self.kit.servo[pin].angle = 180
             sleep(1)
             self.closed = False
 
     def close_drawer(self, pin):
         if not self.closed:
-            self.servos[pin] = 0
+            self.kit.servo[pin].angle = 0
             sleep(1)
             self.closed = True
 
@@ -31,7 +30,7 @@ class Drawer_Servo:
             self.close_drawer(pin)
 
     def move_servo(self, pin, val):
-        self.servos[pin] = val
+        self.kit.servo[pin].angle = val
         sleep(1)
 
 if __name__ == "__main__":
