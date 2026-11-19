@@ -25,6 +25,24 @@ This website has the pinout for a raspberry pi zero here: (https://pinout.xyz/)[
     sudo ldconfig
     ```
 3. Run pigpio using ```sudo pigpiod```
+### Run at startup
+1. Create a new system service using ```sudo nano /etc/systemd/system/pigpiod.service``` and paste the following:
+
+    ```
+    [Unit]
+    Description=Daemon required to control GPIO pins via pigpio
+    After=network.target
+
+    [Service]
+    Type=forking
+    ExecStart=/usr/local/bin/pigpiod -l
+    ExecStop=/bin/systemctl kill pigpiod
+    Restart=always
+
+    [Install]
+    WantedBy=multi-user.target
+    ```
+2. Enable the service for startups: ```sudo systemctl enable pigpiod```
 
 ## Create Desktop Shortcut for Python Script
 [https://stackoverflow.com/questions/28158353/click-desktop-icon-to-execute-python-script-in-raspbian](https://stackoverflow.com/questions/28158353/click-desktop-icon-to-execute-python-script-in-raspbian)
