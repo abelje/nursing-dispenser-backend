@@ -57,9 +57,9 @@ This website has the pinout for a raspberry pi zero here: (https://pinout.xyz/)[
 
     ```
     [Desktop Entry]
-    Name[en_GB]=program.desktop
-    Exec=python3 /path/p.py
-    Icon[en_US]=/path/icon.png
+    Name=program.desktop
+    Exec=env/bin/python3 /path/p.py
+    Icon=/path/icon.png
     Type=Application
     Categories=Programming
     Terminal=false
